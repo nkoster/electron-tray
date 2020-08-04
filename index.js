@@ -18,23 +18,6 @@ app.on('ready', _ => {
         ? 'windows-icon.png'
         : 'iconTemplate.png'
     const iconPath = path.join(__dirname, `./src/assets/${iconName}`)
-    tray = new TimerTray(iconPath)
+    tray = new TimerTray(iconPath, mainWindow)
     console.log(iconPath)
-    tray.on('click', (evt, bounds) => {
-        const { x, y } = bounds
-        const { height, width } = mainWindow.getBounds()
-        console.log(x, y)
-        if (mainWindow.isVisible()) {
-            mainWindow.hide()
-        } else {
-            const yPos = process.platform === 'darwin'
-                ? y
-                : y - height
-            mainWindow.setBounds({
-                x: 1200, yPos,
-                height, width
-            })
-            mainWindow.show()
-        }
-    })
 })
