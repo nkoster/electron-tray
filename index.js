@@ -14,6 +14,9 @@ app.on('ready', _ => {
         frame: false, resizable: false, show: false
     })
     mainWindow.loadURL(`file://${__dirname}/src/index.html`)
+    mainWindow.on('blur', _ => {
+        mainWindow.hide()
+    })
     const iconName = process.platform === 'win32'
         ? 'windows-icon.png'
         : 'iconTemplate.png'
